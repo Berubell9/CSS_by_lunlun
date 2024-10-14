@@ -4,7 +4,7 @@ var params = jQuery.deparam(window.location.search); //Gets the id from url
 
 var timer;
 
-var time = 20;
+var time = 30;
 
 //When host connects to server
 socket.on('connect', function() {
@@ -25,6 +25,12 @@ socket.on('gameQuestions', function(data){
     document.getElementById('answer4').innerHTML = data.a4;
     var correctAnswer = data.correct;
     document.getElementById('playersAnswered').innerHTML = "Players Answered 0 / " + data.playersInGame;
+
+    const imgElement = document.getElementById(`image`);
+    console.log("http://localhost:3000/uploads/"+ data.urlImage)
+    imgElement.src = "http://localhost:3000/uploads/"+ data.urlImage;
+    imgElement.style.display = 'block'; // Show the image
+    //
     updateTimer();
 });
 
@@ -109,6 +115,7 @@ function nextQuestion(){
     document.getElementById('square2').style.display = "none";
     document.getElementById('square3').style.display = "none";
     document.getElementById('square4').style.display = "none";
+    document.getElementById('image').style.display = "none";
     
     document.getElementById('answer1').style.filter = "none";
     document.getElementById('answer2').style.filter = "none";
@@ -144,6 +151,7 @@ socket.on('GameOver', function(data){
     document.getElementById('answer4').style.display = "none";
     document.getElementById('timerText').innerHTML = "";
     document.getElementById('question').innerHTML = "GAME OVER";
+    document.getElementById('image').style.display = "none";
     document.getElementById('playersAnswered').innerHTML = "";
     
     

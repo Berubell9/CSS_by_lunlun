@@ -33,7 +33,6 @@ function answerSubmitted(num){
         document.getElementById('answer4').style.visibility = "hidden";
         document.getElementById('message').style.display = "block";
         document.getElementById('message').innerHTML = "Answer Submitted! Waiting on other players...";
-        
     }
 }
 
@@ -46,13 +45,15 @@ socket.on('answerResult', function(data){
 
 socket.on('questionOver', function(data){
     if(correct == true){
-        document.body.style.backgroundColor = "#4CAF50";
+        document.body.style.backgroundColor = "#3EA352";
+        document.getElementById('message').style.color = "#fff";
         document.getElementById('message').style.display = "block";
-        document.getElementById('message').innerHTML = "Correct!";
+        document.getElementById('message').innerHTML = "Correct !";
     }else{
-        document.body.style.backgroundColor = "#f94a1e";
+        document.body.style.backgroundColor = "#D92929";
+        document.getElementById('message').style.color = "#fff";
         document.getElementById('message').style.display = "block";
-        document.getElementById('message').innerHTML = "Incorrect!";
+        document.getElementById('message').innerHTML = "Incorrect !";
     }
     document.getElementById('answer1').style.visibility = "hidden";
     document.getElementById('answer2').style.visibility = "hidden";
@@ -63,6 +64,7 @@ socket.on('questionOver', function(data){
 
 socket.on('newScore', function(data){
     document.getElementById('scoreText').innerHTML = "Score: " + data;
+    document.getElementById('scoreText').style.color = "#fff";
 });
 
 socket.on('nextQuestionPlayer', function(){
